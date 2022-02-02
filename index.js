@@ -7,6 +7,8 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 
+const userRoute = require("./routes/users");
+
 // environment variables
 
 dotenv.config({
@@ -15,6 +17,13 @@ dotenv.config({
 
 // mongodb connection
 connectDatabase();
+
+//middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
+app.use("/api/users", userRoute);
 
 app.listen(8800, () => {
   console.log("Backend server is running");
