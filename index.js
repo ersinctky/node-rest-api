@@ -6,6 +6,7 @@ const path = require("path");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -16,6 +17,8 @@ const postRoute = require("./routes/posts");
 dotenv.config({
   path: "./config/.env",
 });
+
+app.use(cors());
 
 // mongodb connection
 connectDatabase();
